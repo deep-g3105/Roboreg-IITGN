@@ -2,9 +2,6 @@
 
 ##Take 50 images(png_save.py), depth data(depth_2_npy.py) and joint states(joint_state_2_npy.py) at 50 different robot states.
 
-##Save all images in the format franka_image_0.png, franka_image_1.png ... franka_image_49.png
-##Save all depth data in the format franka_depth_0.npy, franka_depth_
-##Save all joint states in the format franka_joints_0.npy, franka_joints_1.npy ... franka_joints_49.npy
 
 ##Add the below functions to bashrc.
 
@@ -73,7 +70,7 @@ source roboreg/bin/activate
 #Source ROS 
 
 source /opt/ros/humble/setup.bash
-source /home/ubuntu/Debojit_ws/franka_ros2_ws/install/setup.bash
+source /home/ubuntu/Debojit_WS/franka_ros2_ws/install/setup.bash
 
 #Run the functions
 
@@ -85,5 +82,8 @@ rr_hydra
 
 #Render the robot in the images i.e shows the overlay of the robot model on the images. To verify if the HT matrix is correct.
 rr_render
+
+##!!Change side camera info file if resolution changes!!
+
 
 

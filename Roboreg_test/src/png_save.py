@@ -6,13 +6,15 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import cv2
 import os
-from datetime import datetime
 import re
 
 
 class ImageSaver(Node):
 
     def _get_start_index(self) -> int:
+        """
+        Scan save directory and find the next available franka_image_<N>.png index
+        """
         pattern = re.compile(r"franka_image_(\d+)\.png")
         max_index = -1
 
@@ -31,23 +33,24 @@ class ImageSaver(Node):
         os.makedirs(self.save_dir, exist_ok=True)
 
         self.bridge = CvBridge()
-        self.image_count = self._get_start_index()
-        self.get_logger().info(f"Starting image index at {self.image_count}")
-        self.max_images = 1
+
+        # Index handling (FIXED)
+        self.start_index = self._get_start_index()
+        self.saved_count = 0
+        self.max_images = 1   # change if you want more images per run
+
+        self.get_logger().info(f"Starting image index at {self.start_index}")
+        self.get_logger().info(f"Will save {self.max_images} image(s)")
 
         self.subscription = self.create_subscription(
             Image,
-            '/camera/camera/color/image_raw',  #Change camera topic for TOP CAM
+            '/camera/camera/color/image_raw',
             self.image_callback,
             10
         )
 
-        self.get_logger().info(
-            f"Saving {self.max_images} images to: {self.save_dir}"
-        )
-
     def image_callback(self, msg: Image):
-        if self.image_count >= self.max_images:
+        if self.saved_count >= self.max_images:
             return
 
         try:
@@ -55,19 +58,19 @@ class ImageSaver(Node):
                 msg, desired_encoding='bgr8'
             )
 
-            # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-            filename = f"franka_image_{self.image_count}.png"
+            file_index = self.start_index + self.saved_count
+            filename = f"franka_image_{file_index}.png"
             filepath = os.path.join(self.save_dir, filename)
 
             cv2.imwrite(filepath, cv_image)
-            self.image_count += 1
+
+            self.saved_count += 1
 
             self.get_logger().info(
-                f"Saved {self.image_count}/{self.max_images}: {filepath}"
+                f"Saved {self.saved_count}/{self.max_images}: {filepath}"
             )
 
-            # Shutdown after saving required images
-            if self.image_count >= self.max_images:
+            if self.saved_count >= self.max_images:
                 self.get_logger().info("Saved required images. Shutting down...")
                 rclpy.shutdown()
 
