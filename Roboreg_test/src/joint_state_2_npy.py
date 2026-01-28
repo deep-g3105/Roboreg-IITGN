@@ -11,7 +11,7 @@ import re
 
 class JointPositionSaver(Node):
     def _get_start_index(self) -> int:
-        pattern = re.compile(r"franka_joints_(\d+)\.npy")
+        pattern = re.compile(r"heal_joints_(\d+)\.npy")
         max_index = -1
 
         for fname in os.listdir(self.save_dir):
@@ -26,24 +26,23 @@ class JointPositionSaver(Node):
     def __init__(self):
         super().__init__('joint_position_saver')
 
-        self.save_dir = "/home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top"
+        self.save_dir = "/home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/heal_top"
         os.makedirs(self.save_dir, exist_ok=True)
 
         # ===== DEFINE CORRECT JOINT ORDER HERE =====
         self.joint_order = [
-            "fr3_joint1",
-            "fr3_joint2",
-            "fr3_joint3",
-            "fr3_joint4",
-            "fr3_joint5",
-            "fr3_joint6",
-            "fr3_joint7"
+            "joint1",
+            "joint2",
+            "joint3",
+            "joint4",
+            "joint5",
+            "joint6",
         ]
         # ==========================================
 
         self.subscription = self.create_subscription(
             JointState,
-            '/NS_1/franka/joint_states',
+            '/joint_states', # for heal use '/joint_states' , for franka use '/NS_1/franka/joint_states'
             self.joint_state_callback,
             10
         )
@@ -70,7 +69,7 @@ class JointPositionSaver(Node):
             ordered_positions.append(joint_map[joint])
 
         ordered_positions = np.array(ordered_positions, dtype=np.float64)
-        filename = f"franka_joints_{self.file_index}.npy"
+        filename = f"heal_joints_{self.file_index}.npy"
         # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         filepath = os.path.join(
             self.save_dir, filename
