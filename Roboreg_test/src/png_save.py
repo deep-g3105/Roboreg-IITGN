@@ -17,7 +17,7 @@ class ImageSaver(Node):
         """
         Scan save directory and find the next available franka_image_<N>.png index
         """
-        pattern = re.compile(r"heal_image_(\d+)\.png")  #for heal use 'png' , for franka use 'franka_image_(\d+)\.png'
+        pattern = re.compile(r"franka_image_(\d+)\.png")  #for heal use 'png' , for franka use 'franka_image_(\d+)\.png'
         max_index = -1
 
         for fname in os.listdir(self.save_dir):
@@ -27,11 +27,10 @@ class ImageSaver(Node):
                 max_index = max(max_index, idx)
 
         return max_index + 1
-
     def __init__(self):
         super().__init__('image_saver')
 
-        self.save_dir = "/home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/heal_top"
+        self.save_dir = "/home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top"
         os.makedirs(self.save_dir, exist_ok=True)
 
         self.bridge = CvBridge()
@@ -90,7 +89,7 @@ class ImageSaver(Node):
                 )
 
                 file_index = self.start_index
-                filename = f"heal_image_{file_index}.png"
+                filename = f"franka_image_{file_index}.png"
                 filepath = os.path.join(self.save_dir, filename)
 
                 cv2.imwrite(filepath, cv_image)
