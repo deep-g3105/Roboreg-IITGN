@@ -5,102 +5,6 @@
 
 ##Add the below functions to bashrc.
 
-<<<<<<< Updated upstream
-# nano ~/.bashrc
-
-# ##Copy paste the below functions (IF FRANKA) in the bashrc file and save.
-
-# ##Segment
-# ##Change the path as needed according to your file structure.
-# rr_sam2() {
-#     rr-sam2 \
-#         --path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top \
-#         --pattern "franka_image_*.png" \
-#         --n-positive-samples 20 \
-#         --n-negative-samples 20 \
-#         --device cuda
-# }
-
-
-# ##Hydra
-
-# rr_hydra() {
-#     rr-hydra \
-#         --camera-info-file /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/camera_info/camera_top_info.yaml \
-#         --path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top \
-#         --mask-pattern mask_sam2_franka_image_*.png \
-#         --depth-pattern franka_depth_*.npy \
-#         --joint-states-pattern franka_joints_*.npy \
-#         --ros-package franka_description \
-#         --xacro-path robots/fr3/fr3_src.urdf.xacro \  #Save this fr3_src.urdf.xacro file in the specified path(franka_ros2_ws/install/franka_description/share/franka_description/robots/fr3/)
-#         --root-link-name fr3_link0 \
-#         --end-link-name fr3_hand \
-#         --number-of-points 20000 \
-#         --output-file HT_hydra_robust.npy
-# }
-
-
-# ##Render
-
-# rr_render() {
-#     rr-render \
-#         --batch-size 1 \
-#         --num-workers 0 \
-#         --ros-package franka_description \
-#         --xacro-path robots/fr3/fr3_src.urdf.xacro \
-#         --root-link-name fr3_link0 \
-#         --end-link-name fr3_hand \
-#         --camera-info-file /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/camera_info/camera_top_info.yaml \
-#         --extrinsics-file /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka/HT_hydra_robust.npy \
-#         --images-path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top \
-#         --joint-states-path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top \
-#         --image-pattern franka_image_*.png \
-#         --joint-states-pattern franka_joints_*.npy \
-#         --output-path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top
-# }
-
-##Copy paste the below functions (IF HEAL) in the bashrc file and save.
-
-# rr_sam2() {
-#     rr-sam2 \
-#         --path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/heal_top \
-#         --pattern "heal_image_*.png" \
-#         --n-positive-samples 20 \
-#         --n-negative-samples 20 \
-#         --device cuda
-
-# rr_hydra() {
-#     rr-hydra \
-#         --camera-info-file /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/camera_info/camera_top_info.yaml \
-#         --path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/heal_top \
-#         --mask-pattern mask_sam2_heal_image_*.png \
-#         --depth-pattern heal_depth_*.npy \
-#         --joint-states-pattern heal_joints_*.npy \
-#         --ros-package addverb_cobot_description \
-#         --xacro-path urdf/heal.urdf.xacro \
-#         --root-link-name base_link \
-#         --end-link-name end-effector \
-#         --number-of-points 20000 \
-#         --output-file HT_hydra_robust.npy
-# }
-
-# rr_render() {
-#     rr-render \
-#         --batch-size 1 \
-#         --num-workers 0 \
-#         --ros-package addverb_cobot_description \
-#         --xacro-path urdf/heal.urdf.xacro \
-#         --root-link-name base_link \
-#         --end-link-name end-effector \
-#         --camera-info-file /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/camera_info/camera_top_info.yaml \
-#         --extrinsics-file /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/heal_top/HT_hydra_robust.npy \
-#         --images-path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/heal_top \
-#         --joint-states-path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/heal_top \
-#         --image-pattern heal_image_*.png \
-#         --joint-states-pattern heal_joints_*.npy \
-#         --output-path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/heal_top
-# }
-=======
 nano ~/.bashrc
 ##Copy paste the below functions in the bashrc file and save.
 
@@ -108,7 +12,7 @@ nano ~/.bashrc
 ##Change the path as needed according to your file structure.
 rr_sam2() {
     rr-sam2 \
-        --path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top \
+        --path /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/franka_top \
         --pattern "franka_image_*.png" \
         --n-positive-samples 20 \
         --n-negative-samples 20 \
@@ -116,23 +20,25 @@ rr_sam2() {
 }
 
 
+
 ##Hydra
 
 rr_hydra() {
     rr-hydra \
-        --camera-info-file /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/camera_info/camera_top_info.yaml \
-        --path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top \
+        --camera-info-file /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/camera_info/camera_top_>
+        --path /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/franka_top \
         --mask-pattern mask_sam2_franka_image_*.png \
         --depth-pattern franka_depth_*.npy \
         --joint-states-pattern franka_joints_*.npy \
         --ros-package franka_description \
-        --xacro-path robots/fr3/fr3_src.urdf.xacro \  #Save this fr3_src.urdf.xacro file in the specified path
-        # (franka_ros2_ws/install/franka_description/share/franka_description/robots/fr3/)
+        --xacro-path robots/fr3/fr3_src.urdf.xacro \
         --root-link-name fr3_link0 \
         --end-link-name fr3_hand \
         --number-of-points 20000 \
         --output-file HT_hydra_robust.npy
 }
+
+
 
 
 ##Render
@@ -145,15 +51,15 @@ rr_render() {
         --xacro-path robots/fr3/fr3_src.urdf.xacro \
         --root-link-name fr3_link0 \
         --end-link-name fr3_hand \
-        --camera-info-file /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/camera_info/camera_top_info.yaml \
-        --extrinsics-file /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka/HT_hydra_robust.npy \
-        --images-path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top \
-        --joint-states-path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top \
+        --camera-info-file /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/camera_info/camera_top_>
+        --extrinsics-file /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/franka_top/HT_hydra_robu>
+        --images-path /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/franka_top \
+        --joint-states-path /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/franka_top \
         --image-pattern franka_image_*.png \
         --joint-states-pattern franka_joints_*.npy \
-        --output-path /home/ubuntu/Deepak_WS/Roboreg-IITGN/Roboreg_test/franka_top
+        --output-path /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/franka_top
 }
->>>>>>> Stashed changes
+
 
 #Source bashrc
 source ~/.bashrc
@@ -170,10 +76,10 @@ source roboreg/bin/activate
 source /opt/ros/humble/setup.bash
 
 ## If Franka
-source /home/ubuntu/Debojit_WS/franka_ros2_ws/install/setup.bash
+source /home/iitgn-robotics/Debojit_WS/franka_ros2_ws/install/setup.bash
 
 ## If Heal
-source /home/ubuntu/Debojit_WS/cobot_ws/install/setup.bash
+source /home/iitgn-robotics/Debojit_WS/cobot_ws/install/setup.bash
 #Run the functions
 
 #Perform segmentation by selecting positive and negative samples in the displayed images.
