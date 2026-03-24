@@ -451,7 +451,7 @@ Save and close the file, then reload your shell:
 source ~/.bashrc
 ```
 
-> 📝 **Note:** If the camera resolution changes (e.g., when switching from a top camera to a side camera), update the `--camera-info-file` path to the correct `.yaml` accordingly.
+> **Note:** If the camera resolution changes (e.g., when switching from a top camera to a side camera), update the `--camera-info-file` path to the correct `.yaml` accordingly.
 
 ---
 
@@ -630,10 +630,19 @@ Roboreg_test/
 
 ## Acknowledgements
 
-Roboreg was developed at [RViMLab](https://rvim.online/) and [CAI4CAI](https://cai4cai.ml/), King's College London, with support from:
+Roboreg IITGN builds on the original [lbr-stack/roboreg](https://github.com/lbr-stack/roboreg) project. We gratefully acknowledge the following organizations and funding sources that supported the development of the upstream codebase.
 
-- **Wellcome / EPSRC** — [WT203148/Z/16/Z; NS/A000049/1; WT101957; NS/A000027/1]
-- **European Union Horizon 2020** — Grant No. 101016985 (FAROS project)
+### Organizations and Grants
+
+We would further like to acknowledge the following supporters:
+
+| Logo | Notes |
+|:---:|:---|
+| [![Wellcome](https://img.shields.io/badge/Wellcome%2FEPSRC-Supporter-blue)](https://wellcome.org/) | This work was supported by core and project funding from the Wellcome/EPSRC [WT203148/Z/16/Z; NS/A000049/1; WT101957; NS/A000027/1]. |
+| [![EU Flag](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/320px-Flag_of_Europe.svg.png)](https://ec.europa.eu/) | This project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No 101016985 (FAROS project). |
+| [![RViMLab](https://img.shields.io/badge/RViMLab-Built%20Here-lightgrey)](https://rvim.online/) | Built at [RViMLab](https://rvim.online/). |
+| [![CAI4CAI](https://img.shields.io/badge/CAI4CAI-Built%20Here-lightgrey)](https://cai4cai.ml/) | Built at [CAI4CAI](https://cai4cai.ml/). |
+| [![King's College London](https://img.shields.io/badge/King's%20College%20London-Institution-red)](https://www.kcl.ac.uk/) | Built at [King's College London](https://www.kcl.ac.uk/). |
 
 ---
 
