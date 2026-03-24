@@ -83,11 +83,32 @@
 The pipeline has three main stages:
 
 ```
-RGB / RGB-D Images  ──►  [SAM2 Segmentation]  ──►  Robot Masks
-                                                           │
-Depth + Joint States ──►  [Hydra Robust ICP]  ──►  HT Matrix (camera extrinsics)
-                                                           │
-                          [rr-render]          ──►  Visual Verification Overlay
+                    ┌─────────────────┐
+   RGB images  ───► │                 │
+                    │  SAM2           │
+                    │  Segmentation   │
+                    │                 │
+                    └────────┬────────┘
+                             │  Robot masks (.png)
+                    ┌────────▼────────┐
+   Depth arrays ──► │                 │
+   Joint states ──► │  Hydra          │
+                    │  Robust ICP     │
+                    │                 │
+                    └────────┬────────┘
+                             │  HT matrix (4×4 .npy)
+                    ┌────────▼────────┐
+  Images+joints ──► │                 │
+                    │  rr-render      │
+                    │  Verification   │
+                    │                 │
+                    └────────┬────────┘
+                             │
+                    ┌────────▼────────┐
+                    │   Verified      │
+                    │   Calibration   │
+                    │   Result        │
+                    └─────────────────┘
 ```
 
 ---
@@ -451,7 +472,7 @@ Save and close the file, then reload your shell:
 source ~/.bashrc
 ```
 
-> **Note:** If the camera resolution changes (e.g., when switching from a top camera to a side camera), update the `--camera-info-file` path to the correct `.yaml` accordingly.
+>  **Note:** If the camera resolution changes (e.g., when switching from a top camera to a side camera), update the `--camera-info-file` path to the correct `.yaml` accordingly.
 
 ---
 
