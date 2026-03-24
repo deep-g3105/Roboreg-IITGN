@@ -28,12 +28,14 @@
      Suggested size: 600 × 400 px each
      Replace paths below with your actual image files.
 ================================================================ -->
+<div align="center">
 
 | Unregistered | Registered |
 |:---:|:---:|
-| <!-- ![Unregistered](doc/img/unregistered.png) --> `[ doc/img/unregistered.png ]` | <!-- ![Registered](doc/img/registered.png) --> `[ doc/img/registered.png ]` |
+| ![Unregistered](media/unregistered.jpeg) | ![Registered](media/registered.jpeg) |
 
----
+</div>
+
 
 <!-- ============================================================
      RENDER VERIFICATION IMAGE
@@ -43,7 +45,7 @@
 ================================================================ -->
 
 <!-- ![Render Verification](doc/img/render_verification.png) -->
-**[ Placeholder: render verification overlay — doc/img/render_verification.png ]**
+
 
 ---
 
@@ -255,6 +257,14 @@ pip3 install roboreg
 ---
 
 ## Step 0 — Data Collection
+
+<div align="center">
+
+| Sample-1 | Sample-2 |
+|:---:|:---:|
+| ![Sample-1](media/data_0.jpeg) | ![Sample-2](media/data_1.jpeg) |
+
+</div>
 
 Before running any calibration, collect **50 samples** of the robot at different joint configurations. Each sample consists of three synchronized files.
 
@@ -495,12 +505,20 @@ source /opt/ros/humble/setup.bash
 source /home/iitgn-robotics/Debojit_WS/franka_ros2_ws/install/setup.bash
 
 # For Heal / Cobot:
-# source /home/iitgn-robotics/Debojit_WS/cobot_ws/install/setup.bash
+ source /home/iitgn-robotics/Debojit_WS/cobot_ws/install/setup.bash
 ```
 
 ---
 
 ## Step 2 — Segmentation (rr-sam2)
+
+<div align="center">
+
+| Segmentation | Generated Mask |
+|:---:|:---:|
+| ![Segmentation](media/seg.jpeg) | ![Generated Mask](media/seg_mask.jpeg) |
+
+</div>
 
 The segmentation step generates a **binary mask** for each image, isolating the robot from the background. You will be shown images one by one and prompted to click:
 
@@ -531,6 +549,14 @@ rr-sam2 \
 
 ## Step 3 — Hydra Robust ICP (rr-hydra)
 
+<div align="center">
+
+| Unregistered - 50 samples | Registered - 50 samples |
+|:---:|:---:|
+| ![Unregistered](media/unregistered_iitgn.jpeg) | ![Registered](media/registered_iitgn.jpeg) |
+
+</div>
+
 The Hydra algorithm performs **point-to-plane ICP registration on a Lie algebra**, matching the robot's 3D mesh (sampled as a point cloud from URDF/xacro) against the masked depth point cloud from all 50 images. This step does **not** require GPU and can run on CPU.
 
 ```bash
@@ -560,6 +586,14 @@ rr-hydra \
 ---
 
 ## Step 4 — Render & Verify (rr-render)
+
+<div align="center">
+
+| Render - Franka | Render- Heal |
+|:---:|:---:|
+| ![Render-Franka](media/render_franka.jpeg) | ![Render-Heal](media/render_heal.jpeg) |
+
+</div>
 
 Use the computed extrinsics to **overlay the robot's 3D mesh on the original RGB images**. This is a visual sanity check — if the robot model aligns well with the robot in the images, the calibration is correct.
 
