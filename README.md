@@ -457,6 +457,25 @@ rr_hydra() {
         --output-file HT_hydra_robust.npy
 }
 
+## Monocular Differentiable Rendering
+rr_mono_dr() {
+    rr-mono-dr \
+        --optimizer SGD \
+        --lr 0.01 \
+        --max-iterations 100 \
+        --display-progress \
+        --xacro-path robots/fr3/fr3_src.urdf.xacro \
+        --root-link-name fr3_link0 \
+        --end-link-name fr3_hand \
+        --camera-info-file /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/camera_info/camera_top_info.yaml \
+        --extrinsics-file /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/franka_top/HT_hydra_robust.npy \
+        --path /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/franka_top \
+        --image-pattern left_image_*.png \
+        --joint-states-pattern franka_joints_*.npy \
+        --mask-pattern mask_sam2_franka_image_*.png \
+        --output-file HT_dr.npy
+
+} 
 ## Render & Verify
 rr_render() {
     rr-render \
@@ -474,6 +493,7 @@ rr_render() {
         --joint-states-pattern franka_joints_*.npy \
         --output-path /home/iitgn-robotics/deepak_ws/Roboreg-IITGN/Roboreg_test/franka_top
 }
+
 ```
 
 Save and close the file, then reload your shell:
